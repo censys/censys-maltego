@@ -1,0 +1,10 @@
+.idea/
+*.egg-info/
+censys_transforms/
+
+.env
+*.log
+*.zip
+*.pyc
+
+.DS_Store
