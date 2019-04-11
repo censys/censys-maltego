@@ -7,16 +7,13 @@ services.
 
 ### Install
 
-##### We strongly encourage the use of a python virtual environment
+Installation requires a few pre-requisites:
+1. You will need a [Censys account](https://censys.io/register) and [API Key](https://censys.io/account/api)
+1. A working instance of Maltego. Any supported version will work, but the CE edition is limited in how many results can
+be returned to the graph.
+1. A working python3 installation
 
-Instructions are written for MacOS and Linux Operating Systems
-
-- Open the command line! (This is how you know fun is about to begin!)
- - Make sure you have your API key and API Secret handy!
-
-### Setup
+If you're on MacOS or Linux, simply clone the repository and run `make install` from the project directory. For a deeper 
+dive into installation, [please review the installation doc](docs/INSTALL.md). For configuration help, [please read this](docs/CONFIG.md) doc.
 
 ### Getting Help
-
-### Tested Platforms
-[x] MacOS  [] Windows  [x] Linux
