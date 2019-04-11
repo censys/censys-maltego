@@ -15,5 +15,3 @@ be returned to the graph.
 
 If you're on MacOS or Linux, simply clone the repository and run `make install` from the project directory. For a deeper 
 dive into installation, [please review the installation doc](docs/INSTALL.md). For configuration help, [please read this](docs/CONFIG.md) doc.
-
-### Getting Help
