@@ -31,7 +31,6 @@ class IPAddressToASN(Transform):
         c = CensysIPv4()
         # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value
-        res = c.view(ip)
         res = list(
             c.search(
                 f"ip: {ip} AND autonomous_system.asn: *",
