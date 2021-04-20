@@ -6,7 +6,7 @@ from canari.framework import EnableDebugWindow, RequestFilter
 from censys_maltego.transforms.common.utils import check_api_creds
 
 __author__ = "Censys Team"
-__copyright__ = "Copyright 2021, censys Project"
+__copyright__ = "Copyright 2021, censys_maltego Project"
 __credits__ = ["Art Sturdevant", "Aidan Holland"]
 
 __license__ = "GPLv3"
