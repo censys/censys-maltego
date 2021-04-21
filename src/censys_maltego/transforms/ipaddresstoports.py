@@ -9,7 +9,7 @@ __author__ = "Censys Team"
 __copyright__ = "Copyright 2021, censys_maltego Project"
 __credits__ = ["Art Sturdevant", "Aidan Holland"]
 
-__license__ = "GPLv3"
+__license__ = "Apache-2.0"
 __version__ = "0.1"
 __maintainer__ = "Censys Team"
 __email__ = "support@censys.io"
