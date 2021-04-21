@@ -111,6 +111,5 @@ cython_debug/
 # IDE
 .vscode
 
-# Temp
-censys-old
+# Maltego Build
 censys_maltego.mtz
