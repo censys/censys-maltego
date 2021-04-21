@@ -76,6 +76,12 @@ class IPAddressToCertificate(Transform):
                 value = list_to_string(value)
             kwargs[kw] = value
 
+        if "usage" in kwargs:
+            new_usage = []
+            for use in kwargs.get("usage"):
+                new_usage.append(use.strip())
+            kwargs["usage"] = new_usage
+
         if "fingerprint" in kwargs:
             fingerprint = kwargs.get("fingerprint")
             kwargs["censys_url"] = f"https://censys.io/certificates/{fingerprint}"
