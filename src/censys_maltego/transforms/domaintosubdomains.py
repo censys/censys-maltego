@@ -1,9 +1,9 @@
-from canari.maltego.entities import Domain
+from canari.maltego.entities import Domain, IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
 from canari.framework import EnableDebugWindow, RequestFilter
 
-from censys_maltego.transforms.common.utils import check_api_creds
+from censys_maltego.transforms.common.utils import check_api_creds, is_ip
 
 __author__ = "Censys Team"
 __copyright__ = "Copyright 2021, censys_maltego Project"
@@ -44,7 +44,10 @@ class DomainToSubdomains(Transform):
 
         for result in res:
             for subdomain in result.get("parsed.names"):
-                response += Domain(subdomain)
+                if is_ip(subdomain):
+                    response += IPv4Address(subdomain)
+                else:
+                    response += Domain(subdomain)
 
         return response
 

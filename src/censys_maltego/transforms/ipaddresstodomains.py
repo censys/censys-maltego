@@ -1,9 +1,11 @@
+import re
+
 from canari.maltego.entities import Domain, IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
 from canari.framework import EnableDebugWindow, RequestFilter
 
-from censys_maltego.transforms.common.utils import check_api_creds
+from censys_maltego.transforms.common.utils import check_api_creds, is_ip
 
 __author__ = "Censys Team"
 __copyright__ = "Copyright 2021, censys_maltego Project"
@@ -32,7 +34,6 @@ class IPAddressToDomains(Transform):
         c = CensysIPv4()
         # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value
-        res = c.view(ip)
         res = list(
             c.search(
                 f"ip: {ip} AND 443.https.tls.certificate.parsed.fingerprint_sha256: *",
@@ -51,7 +52,10 @@ class IPAddressToDomains(Transform):
             raise MaltegoException(f"No Domains found for {ip}")
 
         for domain in domains:
-            response += Domain(domain)
+            if is_ip(domain):
+                response += IPv4Address(domain)
+            else:
+                response += Domain(domain)
 
         return response
 
