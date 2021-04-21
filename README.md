@@ -32,6 +32,8 @@ INSTRUCTIONS:
 6. Enjoy!
 ```
 
+Edit `~/.canari/censys_maltego.conf` to include your Censys API ID and Secret. Alternatively you can configure your Censys credentials with the `censys config` command.
+
 ## Resources
 
 - [Censys Homepage](https://censys.io/)
