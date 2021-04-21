@@ -32,9 +32,7 @@ class CensysEntity(Entity):
 class SSLCertificate(Entity):
     _category_ = "Infrastructure"
     _type_ = "maltego.X509Certificate"
-    subject = StringEntityField(
-        "subject", display_name="Subject", is_value=True
-    )
+    subject = StringEntityField("subject", display_name="Subject", is_value=True)
     issuer = StringEntityField("issuer", display_name="Issuer")
     subjectDN = StringEntityField("subjectDN", display_name="Subject DN")
     issuerDN = StringEntityField("issuerDN", display_name="Issuer DN")
@@ -43,17 +41,14 @@ class SSLCertificate(Entity):
     serial = StringEntityField("serial", display_name="Serial")
     san = ArrayEntityField("san", display_name="SAN")
     usage = ArrayEntityField("usage", display_name="Usage")
-    issuanceid = IntegerEntityField(
-        "issuanceid", display_name="Issuance ID"
-    )
+    issuanceid = IntegerEntityField("issuanceid", display_name="Issuance ID")
     validFrom = StringEntityField("validFrom", display_name="Valid From")
     validTo = StringEntityField("validTo", display_name="Valid Until")
     country = StringEntityField("country", display_name="Country")
-    organization = StringEntityField(
-        "organization", display_name="Organization"
-    )
+    organization = StringEntityField("organization", display_name="Organization")
     fingerprint = StringEntityField("fingerprint", display_name="SHA-256 Fingerprint")
-    censys_url  = StringEntityField("censys_url", display_name="Censys URL")
+    censys_url = StringEntityField("censys_url", display_name="Censys URL")
+
 
 class IPv6Address(IPv4Address):
     _type_ = "maltego.IPv6Address"

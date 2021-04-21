@@ -16,6 +16,7 @@ RE_IP_PATTERN = re.compile(
     "^((25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])\.){3}(25[0-5]|2[0-4][0-9]|1[0-9][0-9]|[1-9]?[0-9])$"
 )
 
+
 def generate_location(res: dict):
     location = Location(
         country=res.get("location.country", "Unknown"),
@@ -36,6 +37,7 @@ def check_api_creds(request, response, config):
         config["censys.local.api_id"] = None
     if config["censys.local.api_secret"] == "YOUR_API_SECRET":
         config["censys.local.api_id"] = None
+
 
 def is_ip(string) -> bool:
     return bool(re.search(RE_IP_PATTERN, string))
