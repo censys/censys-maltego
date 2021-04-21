@@ -1,4 +1,4 @@
-from canari.maltego.entities import Organization
+from canari.maltego.entities import IPv4Address
 from canari.maltego.message import (
     Entity,
     StringEntityField,
@@ -16,7 +16,7 @@ __maintainer__ = "Censys Team"
 __email__ = "support@censys.io"
 __status__ = "Development"
 
-__all__ = ["CensysEntity", "SSLCertificate"]
+__all__ = ["CensysEntity", "SSLCertificate", "IPv6Address"]
 
 
 class CensysEntity(Entity):
@@ -54,3 +54,6 @@ class SSLCertificate(Entity):
     )
     fingerprint = StringEntityField("fingerprint", display_name="SHA-256 Fingerprint")
     censys_url  = StringEntityField("censys_url", display_name="Censys URL")
+
+class IPv6Address(IPv4Address):
+    _type_ = "maltego.IPv6Address"
