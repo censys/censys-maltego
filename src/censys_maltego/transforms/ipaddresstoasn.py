@@ -1,3 +1,4 @@
+"""IPAddressToASN Tranform."""
 from canari.maltego.entities import IPv4Address, AS
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
@@ -26,6 +27,7 @@ class IPAddressToASN(Transform):
     input_type = IPv4Address
 
     def do_transform(self, request, response, config):
+        """Do Transform."""
         from censys import CensysIPv4
 
         c = CensysIPv4()
@@ -48,8 +50,3 @@ class IPAddressToASN(Transform):
         response += AS(asn)
 
         return response
-
-    def on_terminate(self):
-        """This method gets called when transform execution is prematurely terminated. It is only applicable for local
-        transforms. It can be excluded if you don't need it."""
-        pass

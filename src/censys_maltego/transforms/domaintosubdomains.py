@@ -1,3 +1,4 @@
+"""DomainToSubdomains Tranform."""
 from canari.maltego.entities import Domain, IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
@@ -27,6 +28,7 @@ class DomainToSubdomains(Transform):
     input_type = Domain
 
     def do_transform(self, request, response, config):
+        """Do Transform."""
         from censys import CensysCertificates
 
         c = CensysCertificates()
@@ -50,8 +52,3 @@ class DomainToSubdomains(Transform):
                     response += Domain(subdomain)
 
         return response
-
-    def on_terminate(self):
-        """This method gets called when transform execution is prematurely terminated. It is only applicable for local
-        transforms. It can be excluded if you don't need it."""
-        pass

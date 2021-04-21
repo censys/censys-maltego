@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+"""Censys Maltego Setup."""
 import os
 from setuptools import setup, find_packages
 

@@ -1,9 +1,10 @@
+"""IPAddressToCertificate Tranform."""
 from canari.maltego.entities import IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
 from canari.framework import EnableDebugWindow, RequestFilter
 
-from censys_maltego.transforms.common.utils import check_api_creds
+from censys_maltego.transforms.common.utils import check_api_creds, list_to_string
 from censys_maltego.transforms.common.entities import SSLCertificate
 
 __author__ = "Censys Team"
@@ -40,10 +41,6 @@ FIELDS_TYPES = {
 }
 
 
-def list_to_string(lst: list = []) -> str:
-    return ", ".join(lst)
-
-
 @RequestFilter(check_api_creds)
 @EnableDebugWindow
 class IPAddressToCertificate(Transform):
@@ -53,6 +50,7 @@ class IPAddressToCertificate(Transform):
     input_type = IPv4Address
 
     def do_transform(self, request, response, config):
+        """Do Transform."""
         from censys import CensysIPv4
 
         c = CensysIPv4()
@@ -74,9 +72,8 @@ class IPAddressToCertificate(Transform):
         for kw, censys_field in FIELDS_MAPPING.items():
             value = result.get(censys_field)
             expected_type = FIELDS_TYPES.get(kw, str)
-            if not isinstance(value, expected_type):
-                if isinstance(value, list):
-                    value = list_to_string(value)
+            if not isinstance(value, expected_type) and isinstance(value, list):
+                value = list_to_string(value)
             kwargs[kw] = value
 
         if "fingerprint" in kwargs:
@@ -86,8 +83,3 @@ class IPAddressToCertificate(Transform):
         response += SSLCertificate(**kwargs)
 
         return response
-
-    def on_terminate(self):
-        """This method gets called when transform execution is prematurely terminated. It is only applicable for local
-        transforms. It can be excluded if you don't need it."""
-        pass

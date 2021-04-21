@@ -1,3 +1,4 @@
+"""Common Entities for our tranforms."""
 from canari.maltego.entities import IPv4Address
 from canari.maltego.message import (
     Entity,
@@ -20,16 +21,17 @@ __all__ = ["CensysEntity", "SSLCertificate", "IPv6Address"]
 
 
 class CensysEntity(Entity):
-    """This is the base entity used to optionally define the namespace for all your other entities. The namespace is the
-    string preceding the name of your entity separated by a dot (i.e. 'foo' in 'foo.BarTransform'). If _namespace_ is
-    not defined as a class variable, then the namespace will be generated based on the name of your Canari package. For
-    example, if your project's name is 'sniffmypackets' then the namespace will also be 'sniffmypackets'.
-    """
+    """Censys Base Entity."""
 
     pass
 
 
 class SSLCertificate(Entity):
+    """SSL Certificate Entity.
+
+    Goes by 'maltego.X509Certificate' in Maltego.
+    """
+
     _category_ = "Infrastructure"
     _type_ = "maltego.X509Certificate"
     subject = StringEntityField("subject", display_name="Subject", is_value=True)
@@ -46,9 +48,12 @@ class SSLCertificate(Entity):
     validTo = StringEntityField("validTo", display_name="Valid Until")
     country = StringEntityField("country", display_name="Country")
     organization = StringEntityField("organization", display_name="Organization")
+    # These are additional Censys specific fields
     fingerprint = StringEntityField("fingerprint", display_name="SHA-256 Fingerprint")
     censys_url = StringEntityField("censys_url", display_name="Censys URL")
 
 
 class IPv6Address(IPv4Address):
+    """IPv6 Address Entity."""
+
     _type_ = "maltego.IPv6Address"
