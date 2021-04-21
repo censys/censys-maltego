@@ -4,6 +4,7 @@ from canari.maltego.message import MaltegoException
 from canari.framework import EnableDebugWindow, RequestFilter
 
 from censys_maltego.transforms.common.utils import check_api_creds
+from censys_maltego.transforms.common.entities import IPv6Address
 
 __author__ = "Censys Team"
 __copyright__ = "Copyright 2021, censys_maltego Project"
@@ -43,7 +44,11 @@ class DomainToIPAddress(Transform):
             raise MaltegoException(f"No IPs found for {domain}")
 
         for result in res:
-            response += IPv4Address(result.get("ip"))
+            ip = result.get("ip")
+            if ":" in ip:
+                response += IPv6Address(ip)
+            else:
+                response += IPv4Address(ip)
 
         return response
 
