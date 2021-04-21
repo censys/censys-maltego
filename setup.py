@@ -1,18 +1,28 @@
 #!/usr/bin/env python
+import os
 from setuptools import setup, find_packages
 
 GIT_URL = "https://github.com/censys/censys-maltego"
 
+here = os.path.abspath(os.path.dirname(__file__))
+
+with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
+    long_description = "\n" + f.read()
+
 setup(
     name="censys_maltego",
-    author="Censys Team",
     version="2.0.0",
-    author_email="support@censys.io",
     description="This package provides an interface into Censys from Maltego.",
+    long_description=long_description,
+    long_description_content_type="text/markdown",
+    author="Censys Team",
+    author_email="support@censys.io",
     license="Apache License, Version 2.0",
+    keywords=["censys", "search", "maltego"],
     python_requires=">=3.6.0",
     packages=find_packages("src"),
     package_dir={"": "src"},
+    include_package_data=True,
     zip_safe=False,
     package_data={
         "": ["*.gif", "*.png", "*.conf", "*.mtz", "*.machine"]  # list of resources
@@ -32,6 +42,7 @@ setup(
             "flake8-black==0.2.1",
             "black==20.8b1",
             "mypy==0.812",
+            "twine==3.4.1",
         ]
     },
     classifiers=[
