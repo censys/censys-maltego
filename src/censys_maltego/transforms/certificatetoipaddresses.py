@@ -59,6 +59,7 @@ class CertificateToIPAddresses(Transform):
         ip_addresses.extend([host.get("ip") for host in res])
 
         for ip in ip_addresses:
+            ip = ip.strip()
             if ":" in ip:
                 response += IPv6Address(ip)
             else:
