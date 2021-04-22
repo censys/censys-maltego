@@ -74,11 +74,13 @@ class IPAddressToCertificate(Transform):
             expected_type = FIELDS_TYPES.get(kw, str)
             if not isinstance(value, expected_type) and isinstance(value, list):
                 value = list_to_string(value)
-            kwargs[kw] = value
+            if value:
+                kwargs[kw] = value
 
-        if "usage" in kwargs:
+        usage = kwargs.get("usage")
+        if usage:
             new_usage = []
-            for use in kwargs.get("usage"):
+            for use in usage:
                 new_usage.append(use.strip())
             kwargs["usage"] = new_usage
 
