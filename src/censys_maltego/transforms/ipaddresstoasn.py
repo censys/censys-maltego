@@ -1,7 +1,7 @@
 """IPAddressToASN Tranform."""
 from canari.maltego.entities import IPv4Address, AS
 from canari.maltego.transform import Transform
-from canari.maltego.message import MaltegoException
+from canari.maltego.message import Field
 from canari.framework import RequestFilter
 
 from censys_maltego.transforms.common.utils import check_api_creds
@@ -11,7 +11,7 @@ __copyright__ = "Copyright 2021, censys_maltego Project"
 __credits__ = ["Aidan Holland"]
 
 __license__ = "Apache-2.0"
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Censys Team"
 __email__ = "support@censys.io"
 __status__ = "Development"
@@ -28,25 +28,21 @@ class IPAddressToASN(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysIPv4
+        from censys import CensysHosts
 
-        c = CensysIPv4()
-        # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysHosts()
+        # c = CensysHosts(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value
-        res = list(
-            c.search(
-                f"ip: {ip} AND autonomous_system.asn: *",
-                fields=FIELDS,
-                max_records=1,
-            )
+        res = c.view(ip)
+
+        autonomous_system = res.get("autonomous_system")
+
+        asn = AS(autonomous_system.get("asn"))
+        asn += Field("as.name", autonomous_system.get("name"), display_name="Name")
+        asn += Field(
+            "as.countrycode",
+            autonomous_system.get("country_code"),
+            display_name="Country Code",
         )
-        if len(res) == 0:
-            raise MaltegoException(f"No search results found for {ip}")
 
-        result = res[0]
-
-        asn = result.get("autonomous_system.asn")
-
-        response += AS(asn)
-
-        return response
+        return response + asn

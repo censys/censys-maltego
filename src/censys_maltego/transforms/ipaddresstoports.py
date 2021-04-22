@@ -11,7 +11,7 @@ __copyright__ = "Copyright 2021, censys_maltego Project"
 __credits__ = ["Art Sturdevant", "Aidan Holland"]
 
 __license__ = "Apache-2.0"
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Censys Team"
 __email__ = "support@censys.io"
 __status__ = "Development"
@@ -28,29 +28,19 @@ class IPAddressToPorts(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysIPv4
+        from censys import CensysHosts
 
-        c = CensysIPv4()
-        # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysHosts()
+        # c = CensysHosts(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value
-        res = list(
-            c.search(
-                f"ip: {ip}",
-                fields=FIELDS,
-                max_records=1,
-            )
-        )
-        if len(res) == 0:
-            raise MaltegoException(f"No search results found for {ip}")
+        res = c.view(ip)
 
-        result = res[0]
+        services = res.get("services", [])
 
-        ports = result.get("ports")
-
-        if len(ports) == 0:
+        if len(services) == 0:
             raise MaltegoException(f"No Ports found for {ip}")
 
-        for port in ports:
-            response += Port(port)
+        for service in services:
+            response += Port(service.get("port"))
 
         return response

@@ -1,21 +1,17 @@
 """IPAddressToLocation Tranform."""
-from canari.maltego.entities import IPv4Address
+from canari.maltego.entities import IPv4Address, Location
 from canari.maltego.transform import Transform
-from canari.maltego.message import MaltegoException
+from canari.maltego.message import Field, MaltegoException
 from canari.framework import RequestFilter
 
-from censys_maltego.transforms.common.utils import (
-    check_api_creds,
-    LOCATION_FIELDS,
-    generate_location,
-)
+from censys_maltego.transforms.common.utils import check_api_creds
 
 __author__ = "Censys Team"
 __copyright__ = "Copyright 2021, censys_maltego Project"
 __credits__ = ["Aidan Holland"]
 
 __license__ = "Apache-2.0"
-__version__ = "0.1"
+__version__ = "0.2"
 __maintainer__ = "Censys Team"
 __email__ = "support@censys.io"
 __status__ = "Development"
@@ -30,21 +26,34 @@ class IPAddressToLocation(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysIPv4
+        from censys import CensysHosts
 
-        c = CensysIPv4()
-        # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysHosts()
+        # c = CensysHosts(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value
-        res = list(
-            c.search(
-                f"ip: {ip} AND location.country: *",
-                fields=LOCATION_FIELDS,
-                max_records=1,
-            )
+        res = c.view(ip)
+
+        location = res.get("location")
+        if not location:
+            raise MaltegoException(f"No Location found for {ip}")
+
+        coordinates = location.get("coordinates", {})
+
+        location_entity = Location(
+            country=location.get("country"),
+            countrycode=location.get("country_code"),
+            latitude=coordinates.get("latitude"),
+            longitude=coordinates.get("longitude"),
+            city=location.get("city"),
+            area=location.get("province"),
         )
-        if len(res) == 0:
-            raise MaltegoException(f"No search results found for {ip}")
+        location_entity += Field(
+            "location.timezone", location.get("timezone"), display_name="Timezone"
+        )
+        postal_code = location.get("postal_code")
+        if postal_code:
+            location_entity += Field(
+                "location.zipcode", postal_code, display_name="Postal Code"
+            )
 
-        response += generate_location(res[0])
-
-        return response
+        return response + location_entity
