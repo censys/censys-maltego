@@ -2,7 +2,7 @@
 from canari.maltego.entities import IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
-from canari.framework import EnableDebugWindow, RequestFilter
+from canari.framework import RequestFilter
 
 from censys_maltego.transforms.common.utils import check_api_creds, list_to_string
 from censys_maltego.transforms.common.entities import SSLCertificate
@@ -25,7 +25,7 @@ FIELDS_MAPPING = {
     "issuer": "443.https.tls.certificate.parsed.issuer.common_name",
     "issuerDN": "443.https.tls.certificate.parsed.issuer_dn",
     "serial": "443.https.tls.certificate.parsed.serial_number",
-    "country": "443.https.tls.certificate.parsed.issuer.country",
+    "country": "443.https.tls.certificate.parsed.subject.country",
     "validFrom": "443.https.tls.certificate.parsed.validity.start",
     "validTo": "443.https.tls.certificate.parsed.validity.end",
     "san": "443.https.tls.certificate.parsed.extensions.subject_alt_name.dns_names",
@@ -42,7 +42,6 @@ FIELDS_TYPES = {
 
 
 @RequestFilter(check_api_creds)
-@EnableDebugWindow
 class IPAddressToCertificate(Transform):
     """IPv4 Address to Certificate."""
 
@@ -84,9 +83,12 @@ class IPAddressToCertificate(Transform):
                 new_usage.append(use.strip())
             kwargs["usage"] = new_usage
 
-        if "fingerprint" in kwargs:
-            fingerprint = kwargs.get("fingerprint")
+        fingerprint = kwargs.get("fingerprint")
+        if fingerprint:
             kwargs["censys_url"] = f"https://censys.io/certificates/{fingerprint}"
+
+        if not kwargs.get("subject"):
+            kwargs["subject"] = kwargs["fingerprint"]
 
         response += SSLCertificate(**kwargs)
 

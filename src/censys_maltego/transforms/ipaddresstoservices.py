@@ -1,7 +1,7 @@
 from canari.maltego.entities import IPv4Address, Service
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
-from canari.framework import EnableDebugWindow, RequestFilter
+from canari.framework import RequestFilter
 
 from censys_maltego.transforms.common.utils import check_api_creds
 

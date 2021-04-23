@@ -42,7 +42,7 @@ class DomainToSubdomains(Transform):
             )
         )
         if len(res) == 0:
-            raise MaltegoException(f"No IPs found for {domain}")
+            raise MaltegoException(f"No Certificates found for {domain}")
 
         for result in res:
             for subdomain in result.get("parsed.names"):
