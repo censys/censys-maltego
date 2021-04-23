@@ -11,8 +11,8 @@ with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
     long_description = "\n" + f.read()
 
 setup(
-    name="censys_maltego",
-    version="2.0.0.b1",
+    name="censys-maltego",
+    version="2.0.0.b2",
     description="This package provides an interface into Censys from Maltego.",
     long_description=long_description,
     long_description_content_type="text/markdown",
