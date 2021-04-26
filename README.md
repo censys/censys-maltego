@@ -1,10 +1,9 @@
 # Censys Maltego Integration
 
-[![PyPI](https://img.shields.io/pypi/v/censys-maltego?color=orange)](https://pypi.org/project/censys-maltego/)
-[![Python Version](https://img.shields.io/badge/python-3.6%2B-blue)](https://www.python.org/downloads/)
-[![License](https://img.shields.io/github/license/censys/censys-maltego)](LICENSE)
-[![Code Style](https://img.shields.io/badge/code%20style-black-000000)](https://github.com/psf/black)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
+[![PyPI](https://img.shields.io/pypi/v/censys-maltego?color=orange&logo=pypi&logoColor=orange)](https://pypi.org/project/censys-maltego/)
+[![Python Version](https://img.shields.io/badge/python-3.6%2B-blue?logo=python)](https://www.python.org/downloads/)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-organge.svg?logo=git&logoColor=organge)](http://makeapullrequest.com)
+[![License](https://img.shields.io/github/license/censys/censys-maltego?logo=apache)](LICENSE)
 
 Welcome to Censys transforms for Maltego! Now you can use Censys data to easily perform investigations, quickly search or discover assets, and evaluate your company's digital asset risk by identifying server misconfigurations and rogue services.
 
