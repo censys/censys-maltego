@@ -43,8 +43,7 @@ class CertificateToIPAddresses(Transform):
         if not hasattr(entity, "fingerprint"):
             raise MaltegoException(f"No fingerprint found for {entity.value}")
 
-        c = CensysIPv4()
-        # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
         fingerprint = entity.fingerprint
         res = list(
             c.search(

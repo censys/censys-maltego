@@ -31,8 +31,7 @@ class DomainToSubdomains(Transform):
         """Do Transform."""
         from censys import CensysCertificates
 
-        c = CensysCertificates()
-        # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysCertificates(config["censys.local.api_id"], config["censys.local.api_secret"])
         domain = request.entity.value
         res = list(
             c.search(

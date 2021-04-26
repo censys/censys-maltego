@@ -31,8 +31,7 @@ class IPAddressToDomains(Transform):
         """Do Transform."""
         from censys import CensysIPv4
 
-        c = CensysIPv4()
-        # c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value
         res = list(
             c.search(

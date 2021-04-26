@@ -30,8 +30,7 @@ class IPAddressToASN(Transform):
         """Do Transform."""
         from censys import CensysHosts
 
-        c = CensysHosts()
-        # c = CensysHosts(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysHosts(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value
         res = c.view(ip)
 

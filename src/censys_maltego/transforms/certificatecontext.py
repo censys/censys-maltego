@@ -60,8 +60,7 @@ class CertificateContext(Transform):
 
         provided_cert = request.entity
 
-        c = CensysCertificates()
-        # c = CensysCertificates(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysCertificates(config["censys.local.api_id"], config["censys.local.api_secret"])
 
         if hasattr(provided_cert, "fingerprint"):
             res = c.view(provided_cert.fingerprint)
