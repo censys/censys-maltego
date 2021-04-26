@@ -1,8 +1,9 @@
 """Common Utilities for our tranforms."""
+import os
 import re
 
 from canari.maltego.entities import Location
-from canari.maltego.message import Field
+from canari.maltego.message import Field, MaltegoException
 
 LOCATION_FIELDS = [
     "location.latitude",
@@ -52,10 +53,24 @@ def check_api_creds(request, response, config):
         response: A MaltegoTransformResponse object.
         config: A CanariConfig object.
     """
-    if config["censys.local.api_id"] == "YOUR_API_ID":
-        config["censys.local.api_id"] = None
-    if config["censys.local.api_secret"] == "YOUR_API_SECRET":
-        config["censys.local.api_id"] = None
+    try:
+        api_id = config["censys.local.api_id"]
+        api_secret = config["censys.local.api_secret"]
+
+        if (
+            not api_id
+            or api_id == "YOUR_API_ID"
+            or not api_secret
+            or api_secret == "YOUR_API_SECRET"
+        ):
+            raise KeyError
+    except KeyError as error:
+        config_path = os.path.join(
+            os.path.expanduser("~"), ".canari", "censys_maltego.conf"
+        )
+        raise MaltegoException(
+            f"Please configure your Censys API credentials at: {config_path}"
+        ) from error
 
 
 def is_ip(string: str) -> bool:
