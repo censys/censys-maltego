@@ -1,5 +1,5 @@
 """Common Entities for our tranforms."""
-from canari.maltego.entities import IPv4Address
+from canari.maltego import entities
 from canari.maltego.message import (
     Entity,
     StringEntityField,
@@ -53,7 +53,21 @@ class SSLCertificate(Entity):
     censys_url = StringEntityField("censys_url", display_name="Censys URL")
 
 
-class IPv6Address(IPv4Address):
+class IPv6Address(entities.IPv4Address):
     """IPv6 Address Entity."""
 
     _type_ = "maltego.IPv6Address"
+
+
+class AS(entities.AS):
+    """AS Entity."""
+
+    name = StringEntityField("as.name", display_name="Name")
+    countrycode = StringEntityField("as.countrycode", display_name="Country Code")
+
+
+class Location(entities.Location):
+    """Location Entity."""
+
+    timezone = StringEntityField("location.timezone", display_name="Timezone")
+    zipcode = StringEntityField("location.zipcode", display_name="Zip Code")
