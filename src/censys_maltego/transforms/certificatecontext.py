@@ -8,7 +8,7 @@ from censys_maltego.transforms.common.entities import SSLCertificate
 from censys_maltego.transforms.common.utils import (
     check_api_creds,
     list_to_string,
-    is_ip,
+    is_ipv4,
 )
 
 __author__ = "Censys Team"
@@ -60,7 +60,9 @@ class CertificateContext(Transform):
 
         provided_cert = request.entity
 
-        c = CensysCertificates(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysCertificates(
+            config["censys.local.api_id"], config["censys.local.api_secret"]
+        )
 
         if hasattr(provided_cert, "fingerprint"):
             res = c.view(provided_cert.fingerprint)
@@ -73,7 +75,7 @@ class CertificateContext(Transform):
                 response += entity
 
             for name in parsed.get("names", []):
-                if is_ip(name):
+                if is_ipv4(name):
                     response += IPv4Address(name)
                 else:
                     response += Domain(name)

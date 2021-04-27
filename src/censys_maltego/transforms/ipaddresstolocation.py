@@ -1,9 +1,10 @@
 """IPAddressToLocation Tranform."""
-from canari.maltego.entities import IPv4Address, Location
+from canari.maltego.entities import IPv4Address
 from canari.maltego.transform import Transform
-from canari.maltego.message import Field, MaltegoException
+from canari.maltego.message import MaltegoException
 from canari.framework import RequestFilter
 
+from censys_maltego.transforms.common.entities import Location
 from censys_maltego.transforms.common.utils import check_api_creds
 
 __author__ = "Censys Team"
@@ -28,7 +29,9 @@ class IPAddressToLocation(Transform):
         """Do Transform."""
         from censys import CensysHosts
 
-        c = CensysHosts(config["censys.local.api_id"], config["censys.local.api_secret"])
+        c = CensysHosts(
+            config["censys.local.api_id"], config["censys.local.api_secret"]
+        )
         ip = request.entity.value
         res = c.view(ip)
 
@@ -45,14 +48,8 @@ class IPAddressToLocation(Transform):
             longitude=coordinates.get("longitude"),
             city=location.get("city"),
             area=location.get("province"),
+            timezone=location.get("timezone"),
+            zipcode=location.get("postal_code"),
         )
-        location_entity += Field(
-            "location.timezone", location.get("timezone"), display_name="Timezone"
-        )
-        postal_code = location.get("postal_code")
-        if postal_code:
-            location_entity += Field(
-                "location.zipcode", postal_code, display_name="Postal Code"
-            )
 
         return response + location_entity

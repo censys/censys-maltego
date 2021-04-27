@@ -2,7 +2,7 @@
 from canari.maltego.entities import Domain, IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
-from canari.framework import EnableDebugWindow, RequestFilter
+from canari.framework import RequestFilter
 
 from censys_maltego.transforms.common.utils import check_api_creds
 from censys_maltego.transforms.common.entities import IPv6Address
@@ -21,7 +21,6 @@ FIELDS = ["ip"]
 
 
 @RequestFilter(check_api_creds)
-@EnableDebugWindow
 class DomainToIPAddress(Transform):
     """Domain to IPv4 Address."""
 

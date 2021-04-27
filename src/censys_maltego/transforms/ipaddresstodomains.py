@@ -4,7 +4,7 @@ from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
 from canari.framework import EnableDebugWindow, RequestFilter
 
-from censys_maltego.transforms.common.utils import check_api_creds, is_ip
+from censys_maltego.transforms.common.utils import check_api_creds, is_ipv4
 
 __author__ = "Censys Team"
 __copyright__ = "Copyright 2021, censys_maltego Project"
@@ -51,7 +51,7 @@ class IPAddressToDomains(Transform):
             raise MaltegoException(f"No Domains found for {ip}")
 
         for domain in domains:
-            if is_ip(domain):
+            if is_ipv4(domain):
                 response += IPv4Address(domain)
             else:
                 response += Domain(domain)
