@@ -47,6 +47,7 @@ setup(
             "responses==0.13.2",
             "mypy==0.812",
             "twine==3.4.1",
+            "parameterized==0.8.1",
         ]
     },
     classifiers=[
