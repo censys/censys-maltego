@@ -1,3 +1,4 @@
+"""CertificateContext Tranform."""
 from typing import List, Optional
 
 from canari.maltego.entities import Domain, Organization, Location, IPv4Address, Entity
@@ -23,6 +24,15 @@ __status__ = "Development"
 
 
 def json_to_entity(json: dict, link: Optional[str] = None) -> List[Entity]:
+    """Censys JSON response to entities.
+
+    Args:
+        json (dict): Censys JSON response.
+        link (str): Optional; Link label for entity relationships.
+
+    Returns:
+        List[Entity]: List of entities to respond.
+    """
     entities: List[Entity] = []
     kwargs = {}
     if link:
@@ -49,7 +59,7 @@ def json_to_entity(json: dict, link: Optional[str] = None) -> List[Entity]:
 @EnableDebugWindow
 @RequestFilter(check_api_creds)
 class CertificateContext(Transform):
-    """Certificate to Domains, Organizations, Locations"""
+    """Certificate to Domains, Organizations, Locations."""
 
     # The transform input entity type.
     input_type = SSLCertificate
