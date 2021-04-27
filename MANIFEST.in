@@ -1,0 +1,4 @@
+include README.md LICENSE
+include *.md
+recursive-include src *.py *.conf *.gif *.png *.mtz *.machine
+recursive-include maltego *.mtz
