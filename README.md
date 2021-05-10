@@ -11,7 +11,7 @@ Welcome to Censys transforms for Maltego! Now you can use Censys data to easily 
 
 Installation requires a few pre-requisites:
 
-- You will need a [Censys account](https://censys.io/register) and [API Key](https://censys.io/account/api)
+- You will need a [Censys account](https://censys.io/register) and [API Key](https://censys.io/account/api).
 - A working instance of [Maltego](https://www.maltego.com/downloads/). Any supported version will work, but the CE edition is limited in how many results can be returned to the graph.
 - A working python3 installation. [Python 3.6+](https://www.python.org/downloads/) is currently supported.
 

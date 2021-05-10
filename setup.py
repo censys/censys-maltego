@@ -21,7 +21,7 @@ setup(
     license="Apache License, Version 2.0",
     keywords=["censys", "search", "maltego"],
     python_requires=">=3.6.0",
-    packages=find_packages("src"),
+    packages=find_packages("src", exclude=["tests"]),
     package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
@@ -30,7 +30,7 @@ setup(
     },
     install_requires=[
         "canari>=3.3.10,<4",
-        "censys==2.0.0b2",
+        "censys==2.0.0",
     ],
     extras_require={
         "dev": [
