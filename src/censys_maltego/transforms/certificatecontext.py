@@ -3,7 +3,7 @@ from typing import List, Optional
 
 from canari.maltego.entities import Domain, Organization, Location, IPv4Address, Entity
 from canari.maltego.transform import Transform
-from canari.framework import EnableDebugWindow, RequestFilter
+from canari.framework import RequestFilter
 
 from censys_maltego.transforms.common.entities import SSLCertificate
 from censys_maltego.transforms.common.utils import (
@@ -56,7 +56,6 @@ def json_to_entity(json: dict, link: Optional[str] = None) -> List[Entity]:
     return entities
 
 
-@EnableDebugWindow
 @RequestFilter(check_api_creds)
 class CertificateContext(Transform):
     """Certificate to Domains, Organizations, Locations."""
@@ -66,7 +65,7 @@ class CertificateContext(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysCertificates
+        from censys.search import CensysCertificates
 
         provided_cert = request.entity
 

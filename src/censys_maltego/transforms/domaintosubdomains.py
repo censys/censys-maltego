@@ -2,7 +2,7 @@
 from canari.maltego.entities import Domain, IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
-from canari.framework import EnableDebugWindow, RequestFilter
+from canari.framework import RequestFilter
 
 from censys_maltego.transforms.common.utils import check_api_creds, is_ipv4
 
@@ -20,7 +20,6 @@ FIELDS = ["parsed.names"]
 
 
 @RequestFilter(check_api_creds)
-@EnableDebugWindow
 class DomainToSubdomains(Transform):
     """Domain to Subdomains."""
 
@@ -29,7 +28,7 @@ class DomainToSubdomains(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysCertificates
+        from censys.search import CensysCertificates
 
         c = CensysCertificates(
             config["censys.local.api_id"], config["censys.local.api_secret"]

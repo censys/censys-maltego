@@ -50,7 +50,7 @@ class IPAddressToCertificate(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysIPv4
+        from censys.search import CensysIPv4
 
         c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value

@@ -27,7 +27,7 @@ class IPAddressToASN(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysHosts
+        from censys.search import CensysHosts
 
         c = CensysHosts(
             config["censys.local.api_id"], config["censys.local.api_secret"]

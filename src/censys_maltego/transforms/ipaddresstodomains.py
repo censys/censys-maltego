@@ -2,7 +2,7 @@
 from canari.maltego.entities import Domain, IPv4Address
 from canari.maltego.transform import Transform
 from canari.maltego.message import MaltegoException
-from canari.framework import EnableDebugWindow, RequestFilter
+from canari.framework import RequestFilter
 
 from censys_maltego.transforms.common.utils import check_api_creds, is_ipv4
 
@@ -20,7 +20,6 @@ FIELDS = ["443.https.tls.certificate.parsed.names"]
 
 
 @RequestFilter(check_api_creds)
-@EnableDebugWindow
 class IPAddressToDomains(Transform):
     """IPv4 Address to Domains."""
 
@@ -29,7 +28,7 @@ class IPAddressToDomains(Transform):
 
     def do_transform(self, request, response, config):
         """Do Transform."""
-        from censys import CensysIPv4
+        from censys.search import CensysIPv4
 
         c = CensysIPv4(config["censys.local.api_id"], config["censys.local.api_secret"])
         ip = request.entity.value

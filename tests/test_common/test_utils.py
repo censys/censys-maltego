@@ -31,6 +31,9 @@ class TestUtils(TestCase):
                 },
             )
 
+    def test_check_valid_api_creds(self):
+        check_api_creds(None, None, self.config)
+
     @parameterized.expand(
         [
             ("8.8.8.8", True),
