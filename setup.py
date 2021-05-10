@@ -34,7 +34,7 @@ setup(
     ],
     extras_require={
         "dev": [
-            "flake8==3.9.1",
+            "flake8==3.9.2",
             "flake8-docstrings==1.6.0",
             "flake8-pytest-style==1.4.1",
             "flake8-simplify==0.14.0",
