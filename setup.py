@@ -42,7 +42,7 @@ setup(
             "pep8-naming==0.11.1",
             "flake8-black==0.2.1",
             "black==20.8b1",
-            "pytest==6.2.3",
+            "pytest==6.2.4",
             "pytest-cov==2.11.1",
             "responses==0.13.2",
             "mypy==0.812",
