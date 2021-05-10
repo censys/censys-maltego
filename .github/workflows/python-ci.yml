@@ -8,11 +8,8 @@ on:
 
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     timeout-minutes: 10
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest]
 
     steps:
       - uses: actions/checkout@v2
