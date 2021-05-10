@@ -12,7 +12,7 @@ with open(os.path.join(here, "README.md"), encoding="utf-8") as f:
 
 setup(
     name="censys-maltego",
-    version="2.0.0.b2",
+    version="2.0.0",
     description="This package provides an interface into Censys from Maltego.",
     long_description=long_description,
     long_description_content_type="text/markdown",
