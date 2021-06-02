@@ -43,7 +43,7 @@ setup(
             "flake8-black==0.2.1",
             "black==21.5b1",
             "pytest==6.2.4",
-            "pytest-cov==2.12.0",
+            "pytest-cov==2.12.1",
             "responses==0.13.3",
             "mypy==0.812",
             "twine==3.4.1",
