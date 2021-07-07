@@ -39,7 +39,7 @@ setup(
             "flake8-pytest-style==1.5.0",
             "flake8-simplify==0.14.1",
             "flake8-comprehensions==3.5.0",
-            "pep8-naming==0.11.1",
+            "pep8-naming==0.12.0",
             "flake8-black==0.2.1",
             "black==21.6b0",
             "pytest==6.2.4",
