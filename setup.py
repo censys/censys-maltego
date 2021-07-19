@@ -41,7 +41,7 @@ setup(
             "flake8-comprehensions==3.5.0",
             "pep8-naming==0.12.0",
             "flake8-black==0.2.3",
-            "black==21.6b0",
+            "black==21.7b0",
             "pytest==6.2.4",
             "pytest-cov==2.12.1",
             "responses==0.13.3",
