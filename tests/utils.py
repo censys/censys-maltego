@@ -8,6 +8,7 @@ class TestCase(unittest.TestCase):
     api_secret = "test-api-secret"
     v1_base_url = "https://censys.io/api/v1"
     v2_base_url = "https://search.censys.io/api/v2"
+    v1_api_on_v2_base_url = "https://search.censys.io/api/v1"
     config = {
         "censys.local.api_id": api_id,
         "censys.local.api_secret": api_secret,
