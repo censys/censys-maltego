@@ -26,7 +26,7 @@ class TestDomainToSubdomains(TestCase):
     def test_do_transform(self):
         self.responses.add(
             responses.POST,
-            f"{self.v1_base_url}/search/certificates",
+            f"{self.v1_api_on_v2_base_url}/search/certificates",
             status=200,
             json=SEARCH_CERTIFICATE_JSON,
         )
@@ -49,7 +49,7 @@ class TestDomainToSubdomains(TestCase):
         no_asn_json["results"] = []
         self.responses.add(
             responses.POST,
-            f"{self.v1_base_url}/search/certificates",
+            f"{self.v1_api_on_v2_base_url}/search/certificates",
             status=200,
             json=no_asn_json,
         )
