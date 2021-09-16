@@ -30,7 +30,7 @@ setup(
     },
     install_requires=[
         "canari>=3.3.10,<4",
-        "censys==2.0.6",
+        "censys==2.0.7",
     ],
     extras_require={
         "dev": [
