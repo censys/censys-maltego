@@ -38,7 +38,7 @@ setup(
             "flake8-docstrings==1.6.0",
             "flake8-pytest-style==1.5.0",
             "flake8-simplify==0.14.2",
-            "flake8-comprehensions==3.6.1",
+            "flake8-comprehensions==3.7.0",
             "pep8-naming==0.12.1",
             "flake8-black==0.2.3",
             "black==21.9b0",
