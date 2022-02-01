@@ -44,7 +44,7 @@ setup(
             "black==22.1.0",
             "pytest==6.2.5",
             "pytest-cov==3.0.0",
-            "responses==0.14.0",
+            "responses==0.17.0",
             "mypy==0.910",
             "twine==3.7.0",
             "parameterized==0.8.1",
