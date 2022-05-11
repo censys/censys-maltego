@@ -7,11 +7,15 @@
 
 Welcome to Censys transforms for Maltego! Now you can use Censys data to easily perform investigations, quickly search or discover assets, and evaluate your company's digital asset risk by identifying server misconfigurations and rogue services.
 
+## Alternatives
+
+- [Censys Transforms for Maltego](https://www.maltego.com/transform-hub/censys/) By Maltego Technologies ([Docs](https://docs.maltego.com/support/solutions/articles/15000047639-censys))
+
 ## Install
 
 Installation requires a few pre-requisites:
 
-- You will need a [Censys account](https://censys.io/register) and [API Key](https://censys.io/account/api).
+- You will need a [Censys account](https://search.censys.io/register) and [API Key](https://search.censys.io/account/api).
 - A working instance of [Maltego](https://www.maltego.com/downloads/). Any supported version will work, but the CE edition is limited in how many results can be returned to the graph.
 - A working python3 installation. [Python 3.6+](https://www.python.org/downloads/) is currently supported.
 
@@ -35,9 +39,10 @@ Edit `~/.canari/censys_maltego.conf` to include your Censys API ID and Secret. A
 
 ## Resources
 
-- [Censys Homepage](https://censys.io/)
 - [Source](https://github.com/censys/censys-maltego)
 - [Issue Tracker](https://github.com/censys/censys-maltego/issues)
+- [Censys Homepage](https://censys.io/)
+- [Censys Search](https://search.censys.io/)
 
 ## Contributing
 
@@ -47,4 +52,4 @@ All contributions (no matter how small) are always welcome.
 
 This software is licensed under [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-- Copyright (C) 2021 Censys, Inc.
+- Copyright (C) 2022 Censys, Inc.
