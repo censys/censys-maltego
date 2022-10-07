@@ -30,7 +30,7 @@ setup(
     },
     install_requires=[
         "canari>=3.3.10,<4",
-        "censys==2.0.9",
+        "censys==2.1.8",
     ],
     extras_require={
         "dev": [
@@ -41,7 +41,7 @@ setup(
             "flake8-comprehensions==3.8.0",
             "pep8-naming==0.12.1",
             "flake8-black==0.2.4",
-            "black==22.1.0",
+            "black==22.10.0",
             "pytest==7.0.1",
             "pytest-cov==3.0.0",
             "responses==0.18.0",
